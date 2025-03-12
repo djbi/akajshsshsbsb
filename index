@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Clicker Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #cat {
+            width: 200px;
+            cursor: pointer;
+        }
+        #score {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cat Clicker Game</h1>
+    <img id="cat" src="cat.png" alt="Cat">
+    <div id="score">Score: 0</div>
+    <script>
+        let score = 0;
+        document.getElementById('cat').addEventListener('click', function() {
+            score++;
+            document.getElementById('score').innerText = 'Score: ' + score;
+        });
+    </script>
+</body>
+</html>
+let autoClickerInterval;
+function buyAutoClicker() {
+    if (score >= 50) {
+        score -= 50;
+        document.getElementById('score').innerText = 'Score: ' + score;
+        if (!autoClickerInterval) {
+            autoClickerInterval = setInterval(function() {
+                score++;
+                document.getElementById('score').innerText = 'Score: ' + score;
+            }, 1000);
+        }
+    }
+}
+document.getElementById('buyAutoClicker').addEventListener('click', buyAutoClicker);
